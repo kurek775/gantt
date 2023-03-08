@@ -1,20 +1,38 @@
+import Project from "./components/project"
 import Task from "./components/task"
-
+import { useState, useEffect } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 
-  const start: Date = new Date("1/2/2000")
-  const end: Date = new Date("1/20/2000")
+  const [project, setProject]: any = useState()
+  async function getProjects() {
 
-  const pstart: Date = new Date("1/2/2000")
-  const pend: Date = new Date("1/5/2000")
 
+    const response = await fetch('http://localhost:5000/projects', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    const data = await response.json();
+    setProject(data[0]);
+  }
+
+
+  useEffect(() => {
+
+    getProjects();
+
+
+  }, []);
+
+  console.log(project);
 
   return (
     <div className="App">
-<Task start={start} end={end} pstart={pstart} pend={pend} name="test" note="xx" parent="tst"></Task>
-<Task start={start} end={end} pstart={pstart} pend={pend} name="test" note="xx" parent="tst"></Task>
-<Task start={start} end={end} pstart={pstart} pend={pend} name="test" note="xx" parent="tst"></Task>
-<Task start={start} end={end} pstart={pstart} pend={pend} name="test" note="xx" parent="tst"></Task>
+      <Project name={project?.name} tasks={project?.tasks} ></Project>
+
     </div>
   )
 }
