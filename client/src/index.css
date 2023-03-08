@@ -1,0 +1,15 @@
+.dayrow, .task{
+  display: flex;
+  flex-direction: row;
+}
+.day{
+
+  border-left: 1px solid black;
+  width: 50px;
+}
+.period{
+  background-color: red;
+}
+h2{
+  margin: 0px 20px;
+}
