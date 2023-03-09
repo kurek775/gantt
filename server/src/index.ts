@@ -1,5 +1,11 @@
 import express, {Request, Response} from "express";
 import cors from "cors";
+import ProjectModel from "./models/Project";
+import { MongoClient} from 'mongodb'
+import { config } from 'dotenv';
+import mongoose from "mongoose";
+import { createProjectController } from "./controllers/createProjectController";
+config();
 const app = express();
 const PORT: number = 5000;
 
@@ -8,8 +14,12 @@ app.use(
         origin: "*"
     })
 )
+app.post("/api/project",createProjectController);
+    
+ 
 
-app.get("/projects", (req: Request, res: Response) =>{
+
+app.get("/api/projects", (req: Request, res: Response) =>{
 
   const responseData = [
     {
@@ -88,5 +98,7 @@ app.get("/projects", (req: Request, res: Response) =>{
   res.send(responseData)
 });
 
-
-app.listen(PORT);
+mongoose.connect(process.env.MONGO_URL!).then(() => {
+    console.log(`listening on port ${PORT}`);
+    app.listen(PORT);
+  });

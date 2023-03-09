@@ -14,7 +14,7 @@ const Home: React.FC<HomeProps> = (HomeProps) => {
     const [project, setProject]: any = useState()
     async function getProjects() {
   
-    const response = await fetch('http://localhost:5000/projects', {
+    const response = await fetch('http://localhost:5000/api/projects', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

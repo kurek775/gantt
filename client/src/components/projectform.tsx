@@ -19,7 +19,7 @@ const ProjectForm: React.FC<ProjectFormProps> = (ProjectFormProps) => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            project
+            name: project
           }),
         })
     
