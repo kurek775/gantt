@@ -1,37 +1,44 @@
-import Project from "./components/project"
-import Task from "./components/task"
-import { useState, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+
+} from "react-router-dom";
+import { Routes } from "react-router";
+import { AuthContext } from "./context/AuthContext";
+import { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from "./pages/loginform";
+import Home from "./pages/home";
+
 function App() {
+  const [user, setUser]: any = useState();
+  async function handleLogout() {
 
-  const [project, setProject]: any = useState()
-  async function getProjects() {
-
-
-    const response = await fetch('http://localhost:5000/projects', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-
-    const data = await response.json();
-    setProject(data[0]);
-  }
+    localStorage.removeItem('token');
+    setUser(null);
 
 
-  useEffect(() => {
-
-    getProjects();
-
-
-  }, []);
-
-  console.log(project);
-
+}
   return (
     <div className="App">
-      <Project name={project?.name} tasks={project?.tasks} ></Project>
+  
+  <AuthContext.Provider value={{ user, setUser }}>
+          <Router>
+           
+            <Routes>
+           
+              <Route path="/" element={<Login></Login>} />
+              <Route path="/home" element={<Home></Home>} />
+          
+            </Routes>
+
+          </Router>
+        </AuthContext.Provider>
+
+
+
+
 
     </div>
   )

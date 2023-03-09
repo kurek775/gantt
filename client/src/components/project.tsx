@@ -8,17 +8,18 @@ interface ProjectProps {
 }
 
 const Project: React.FC<ProjectProps> = (ProjectProps) => {
-    const start: Date = new Date("1/2/2000")
-    const end: Date = new Date("1/20/2000")
 
-    const pstart: Date = new Date("1/2/2000")
-    const pend: Date = new Date("1/5/2000")
+    const start: Date = new Date("1/2/2020")
+    const end: Date = new Date("2/20/2020")
+
 
     return (<div><h3>{ProjectProps.name}</h3>
-        <Task start={start} end={end} pstart={pstart} pend={pend} name="test" note="xx" parent="tst"></Task>
-        <Task start={start} end={end} pstart={pstart} pend={pend} name="test" note="xx" parent="tst"></Task>
-        <Task start={start} end={end} pstart={pstart} pend={pend} name="test" note="xx" parent="tst"></Task>
-        <Task start={start} end={end} pstart={pstart} pend={pend} name="test" note="xx" parent="tst"></Task>
+        {
+            ProjectProps.tasks?.map((task: any) => (
+                <Task start={start} end={end} periods={task.periods} name={task.name} note="q" parent="q"></Task>
+            ))
+        }
+
     </div>);
 }
 

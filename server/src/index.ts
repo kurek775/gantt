@@ -22,12 +22,12 @@ app.get("/projects", (req: Request, res: Response) =>{
                 "note": "testovani neceho",
                 "periods": [
                     {
-                        "start": "11/1/2020",
-                        "end": "12/1/2020"
+                        "start": "1/12/2020",
+                        "end": "1/25/2020"
                     },
                     {
-                        "start": "15/1/2020",
-                        "end": "18/1/2020"
+                        "start": "1/27/2020",
+                        "end": "1/29/2020"
                     }
                 ]
             },
@@ -37,12 +37,48 @@ app.get("/projects", (req: Request, res: Response) =>{
                 "note": "testovani niceho",
                 "periods": [
                     {
-                        "start": "19/1/2020",
-                        "end": "25/1/2020"
+                        "start": "1/19/2020",
+                        "end": "1/25/2020"
                     },
                     {
-                        "start": "30/1/2020",
-                        "end": "5/2/2020"
+                        "start": "1/30/2020",
+                        "end": "2/5/2020"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "akvizice dva",
+        "id": 5,
+        "tasks": [
+            {
+                "id": 2,
+                "name": "testing",
+                "note": "testovani neceho",
+                "periods": [
+                    {
+                        "start": "1/5/2020",
+                        "end": "1/15/2020"
+                    },
+                    {
+                        "start": "1/27/2020",
+                        "end": "1/29/2020"
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "name": "testing 5",
+                "note": "testovani niceho",
+                "periods": [
+                    {
+                        "start": "1/9/2020",
+                        "end": "1/22/2020"
+                    },
+                    {
+                        "start": "1/30/2020",
+                        "end": "2/5/2020"
                     }
                 ]
             }
