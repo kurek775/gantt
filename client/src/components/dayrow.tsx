@@ -40,9 +40,9 @@ const DayRow: React.FC<DayRowProps> = (DayRowProps) => {
 
 
     return (<div><div className='dayrow'>
-        {dates?.map((day: any) => (
+        {dates?.map((day: any, index: number) => (
 
-            <div className={period
+            <div key={index} className={period
                 ?.filter((dy: any) => day.day === dy.day) // Filter the period array to only include matching days
                 .map((dy: any) => 'period') // Map over the filtered array and return 'task' for each element
                 .join(' ') // Join the resulting array of class names into a single string with a space separator

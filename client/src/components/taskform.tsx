@@ -1,48 +1,57 @@
 import { Card, Form, Button, Col, Row } from "react-bootstrap";
-import {useState} from 'react';
+import { useState, useContext } from 'react';
+import { AuthContext } from "../context/AuthContext";
 
 interface TaskFormProps {
 
 }
 
 const TaskForm: React.FC<TaskFormProps> = (TaskFormProps) => {
-
+    const { project, setProject }: any = useContext(AuthContext);
     const [task, setTask] = useState('');
     const [start, setStart] = useState('');
     const [end, setEnd] = useState('');
     const [loading, setLoading] = useState(false)
-
+    const [taskproject, setTaskProject] = useState('');
     async function handleSubmit(event: React.FormEvent) {
         event.preventDefault()
-    
+
         const response = await fetch('http://localhost:5000/api/project', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            task,
-            start,
-            end
-          }),
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                task,
+                start,
+                end
+            }),
         })
-    
-      
-    
-      }
+
+
+
+    }
 
     return (<Card>
         <Form onSubmit={handleSubmit}>
 
             <Form.Group>
                 <Form.Label>Task title</Form.Label>
-                <Form.Control  value={task} onChange={(e) => setTask(e.target.value)} required  type="text" placeholder="Title" />
+                <Form.Control value={task} onChange={(e) => setTask(e.target.value)} required type="text" placeholder="Title" />
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Project</Form.Label>
+                <Form.Select value={taskproject} onChange={(e) => setTaskProject(e.target.value)} required placeholder="Title">
+                    {project?.map((project: any,index: number) => 
+                    <option key={index}>{project.name}</option>
+                    )}
+                </Form.Select>
             </Form.Group>
             <Row>
                 <Col>
                     <Form.Group>
                         <Form.Label>Start</Form.Label>
-                        <Form.Control  value={start} onChange={(e) => setStart(e.target.value)} required type="date" placeholder="start" />
+                        <Form.Control value={start} onChange={(e) => setStart(e.target.value)} required type="date" placeholder="start" />
                     </Form.Group>
                 </Col>
                 <Col>
@@ -53,7 +62,7 @@ const TaskForm: React.FC<TaskFormProps> = (TaskFormProps) => {
             </Row>
 
 
-            <Button disabled={loading}  variant="primary" type="submit">
+            <Button disabled={loading} variant="primary" type="submit">
                 Submit
             </Button>
         </Form>

@@ -15,8 +15,8 @@ const Project: React.FC<ProjectProps> = (ProjectProps) => {
 
     return (<div><h3>{ProjectProps.name}</h3>
         {
-            ProjectProps.tasks?.map((task: any) => (
-                <Task start={start} end={end} periods={task.periods} name={task.name} note="q" parent="q"></Task>
+            ProjectProps.tasks?.map((task: any, index: number) => (
+                <Task key={index} start={start} end={end} periods={task.periods} name={task.name} note="q" parent="q"></Task>
             ))
         }
 

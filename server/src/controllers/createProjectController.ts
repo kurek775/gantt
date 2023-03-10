@@ -2,12 +2,15 @@ import { Request, Response } from "express";
 import ProjectModel from "../models/Project";
 
 export async function createProjectController(req: Request, res: Response) {
-    console.log(req.body);
+ 
     const newProject = new ProjectModel({
-        name: req.body?.name,
-        tasks: [""]
+        name: req.body.name,
+        tasks: [""],
+        owner: req.body.owner
     })
 
     const createdProject = newProject.save();
-    res.json(createdProject);
+    const projects = await ProjectModel.find({owner: req.body.owner})
+    res.send(projects)
+  
 }

@@ -1,8 +1,8 @@
 import { Card, Container, Button, Form } from 'react-bootstrap';
-import { useState, useRef, useContext } from 'react'
+import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
-
+import jwt_decode from "jwt-decode";
 interface LoginProps {
 
 }
@@ -31,6 +31,8 @@ const Login: React.FC<LoginProps> = () => {
     if (data.user) {
       localStorage.setItem('token', data.user)
       navigate('/home')
+ 
+  
     } else {
       alert('Please check your username and password')
     }

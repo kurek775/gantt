@@ -1,14 +1,16 @@
 import { Card, Form, Button } from "react-bootstrap";
-import {useState} from "react";
+import {useState, useContext} from "react";
+import { AuthContext } from "../context/AuthContext";
 
 interface ProjectFormProps {
 
 }
 
 const ProjectForm: React.FC<ProjectFormProps> = (ProjectFormProps) => {
-    
-    const [project, setProject] = useState('');
-    const [loading, setLoading] = useState(false)
+    const { user, setUser }: any = useContext(AuthContext);
+    const { project, setProject }: any = useContext(AuthContext);
+    const [projectname, setProjectName ]: any= useState(''); 
+    const [loading, setLoading] = useState(false);
 
     async function handleSubmit(event: React.FormEvent) {
         event.preventDefault()
@@ -19,10 +21,12 @@ const ProjectForm: React.FC<ProjectFormProps> = (ProjectFormProps) => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            name: project
+            name: projectname,
+            owner: user.id
           }),
         })
-    
+        const data = await response.json();
+        setProject(data);
       
     
       }
@@ -30,7 +34,7 @@ const ProjectForm: React.FC<ProjectFormProps> = (ProjectFormProps) => {
         <Form onSubmit={handleSubmit}>
             <Form.Group>
                 <Form.Label>Project title</Form.Label>
-                <Form.Control type="text" placeholder="Title"  value={project} onChange={(e) => setProject(e.target.value)} required  />
+                <Form.Control type="text" placeholder="Title"  value={projectname} onChange={(e) => setProjectName(e.target.value)} required  />
             </Form.Group>
             <Button disabled={loading}  variant="primary" type="submit">
                 Submit

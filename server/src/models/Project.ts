@@ -5,7 +5,9 @@ const Schema = mongoose.Schema;
 
 const ProjectSchema = new Schema({
    name: String,
-   tasks: Array
+   tasks: Array,
+   owner: String
+   
 });
 
 const ProjectModel = mongoose.model('Project', ProjectSchema);
