@@ -8,6 +8,7 @@ interface TaskFormProps {
 
 const TaskForm: React.FC<TaskFormProps> = (TaskFormProps) => {
     const { project, setProject }: any = useContext(AuthContext);
+    const { user, setUser }: any = useContext(AuthContext);
     const [task, setTask] = useState('');
     const [note, setNote] = useState('');
     const [start, setStart] = useState('');
@@ -27,11 +28,14 @@ const TaskForm: React.FC<TaskFormProps> = (TaskFormProps) => {
                 start,
                 end,
                 taskproject,
-                note
+                note,
+                owner: user.id
             }),
         })
       
-   
+        const data = await response.json();
+        setProject(data);
+      
 
 
 

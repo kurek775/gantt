@@ -4,7 +4,7 @@ interface DayProps {
 
 const Day: React.FC<DayProps> = (DayProps) => {
     return (<div className="day">
-        {DayProps.date}
+       {DayProps.date}
 
 
     </div>);

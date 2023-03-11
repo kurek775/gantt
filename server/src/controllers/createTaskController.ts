@@ -20,8 +20,9 @@ export async function createTaskController(req: Request, res: Response) {
             } 
         }
        )
-
-       res.json(project)
+       const projects = await ProjectModel.find({owner: req.body.owner})
+       res.send(projects)
+  
 
    
   
