@@ -8,14 +8,17 @@ import { createProjectController } from "./controllers/createProjectController";
 import { loginUserController } from "./controllers/loginUserController";
 import { createUserController } from "./controllers/createUserController";
 import { getProjectController } from "./controllers/getProjectController";
+import { createTaskController } from "./controllers/createTaskController";
 config();
 const app = express();
 const PORT: number = 5000;
 
 app.use(express.json());
 app.use(cors());
-app.post("/api/project",createProjectController);   
+app.post("/api/project",createProjectController);  
+app.put("/api/task", createTaskController); 
 app.post("/api/projects", getProjectController);
+
 
 app.post("/api/login", loginUserController);
 app.post("/api/register", createUserController);
