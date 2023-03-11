@@ -16,7 +16,7 @@ const TaskForm: React.FC<TaskFormProps> = (TaskFormProps) => {
     const [taskproject, setTaskProject]:any = useState('');
     async function handleSubmit(event: React.FormEvent) {
         event.preventDefault()
-
+    
         const response = await fetch('http://localhost:5000/api/task', {
             method: 'PUT',
             headers: {
@@ -30,6 +30,8 @@ const TaskForm: React.FC<TaskFormProps> = (TaskFormProps) => {
                 note
             }),
         })
+      
+   
 
 
 
@@ -44,7 +46,8 @@ const TaskForm: React.FC<TaskFormProps> = (TaskFormProps) => {
             </Form.Group>
             <Form.Group>
                 <Form.Label>Project</Form.Label>
-                <Form.Select onChange={(e) => setTaskProject(e.target.value)} required >
+                <Form.Select onChange={(e) =>  setTaskProject(e.target.value)} required >
+                    <option value={""}>Choose project...</option>
                     {project?.map((project: any,index: number) => 
                     <option value={project._id} key={index} >{project.name}</option>
                     )}

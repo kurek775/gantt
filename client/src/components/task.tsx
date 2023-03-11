@@ -14,7 +14,7 @@ const Task: React.FC<TaskProps> = (TaskProps) => {
 
   
     return (<>
-    <div className="task">  <h2>{TaskProps.name}</h2>   <DayRow start={TaskProps.start} end={TaskProps.end} 
+    <div className="task"><div className="task-title"><h3>{TaskProps.name}</h3></div>   <DayRow start={TaskProps.start} end={TaskProps.end} 
     periods={TaskProps.periods}></DayRow></div>
     </>  );
 }

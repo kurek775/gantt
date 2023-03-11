@@ -5,7 +5,7 @@ export async function createProjectController(req: Request, res: Response) {
  
     const newProject = new ProjectModel({
         name: req.body.name,
-        tasks: [""],
+        tasks: [],
         owner: req.body.owner
     })
 
